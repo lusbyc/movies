@@ -15,6 +15,7 @@ namespace interview
             StreamReader r = new StreamReader(@"/Users/cashmere/DevProjects/Movies/lusbyc-parse-and-post-aom/movies.json");
             string jsonString = r.ReadToEnd();
 
+            ArrayList movieUrls = new ArrayList();
 
             JArray a = JArray.Parse(jsonString);
 
@@ -32,11 +33,12 @@ namespace interview
                 string image = item.GetValue("image").ToString();
 
                 string url = "http://localhost:9009/movies -d ";
-                string request = "{year: " + year + ", length: " + length + ", title: " + title + ", subject: " + subject + ", actor: " + actor + ", actress: " + actress + ", director: " + director + ", popularity: " + popularity + ", awards: " + awards + ", image: " + image + "}";
+                string request = "'" + "{year: " + year + ", length: " + length + ", title: " + title + ", subject: " + subject + ", actor: " + actor + ", actress: " + actress + ", director: " + director + ", popularity: " + popularity + ", awards: " + awards + ", image: " + image + "}"+"'";
 
                 string postRequest = url + request;
                 Console.WriteLine(postRequest);
-
+                
+                movieUrls.Add(postRequest);
 
             }
         }
